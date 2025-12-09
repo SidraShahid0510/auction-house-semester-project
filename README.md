@@ -1,5 +1,5 @@
 # Auction House Semester Project
-
+![image alt](https://github.com/SidraShahid0510/auction-house-semester-project/blob/main/hero-img.png?raw=true)
 This project is a fully responsive Auction House web application built as my semester project at Noroff. The goal was to plan, design, and develope a complete front-end application using HTML, CSS (Sass), JavaScript, and the Noroff Auction House API. The app allows users to register, log in, browse listings, create and manage their own listings, and place bids on items. It focuses on clean UI design, modular code structure, and an intuitive user experience across all devices.
 
 # Features
@@ -38,14 +38,14 @@ This project is a fully responsive Auction House web application built as my sem
 
 # Installation Guide
 
-## Clone the project
+### Clone the project
 
 ```bash
-git clone <>
-cd aution-house-semester-project
+git clone https://github.com/SidraShahid0510/auction-house-semester-project.git
+cd auction-house-semester-project
 ```
 
-## Initialize package.json
+### Initialize package.json
 
 If you don’t already have a package.json file, create one by running:
 
@@ -55,7 +55,7 @@ npm init -y
 
 This create a basic package.json in your project folder.
 
-## Install Sass
+### Install Sass
 
 Sass is used to compile the .scss files into a single CSS file.
 Install Sass as a dev dependency:
@@ -89,7 +89,7 @@ npm run watch
 npm run build
 ```
 
-## Install Bootstrap
+### Install Bootstrap
 
 Bootstrap is used for layout, grid, and some base styling.
 
@@ -104,7 +104,7 @@ This adds Bootstrap under "dependencies" in your package.json.
 To use Bootstrap’s styles in your Sass, import it at the top of your main SCSS file (for example in styles/scss/main.scss):
 
 ```bash
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap"
 
 ```
 
