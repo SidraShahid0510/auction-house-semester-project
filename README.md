@@ -41,7 +41,7 @@ This project is a fully responsive Auction House web application built as my sem
 ### Clone the project
 
 ```bash
-git clone <https://github.com/SidraShahid0510/auction-house-semester-project.git>
+git clone https://github.com/SidraShahid0510/auction-house-semester-project.git
 cd auction-house-semester-project
 ```
 
@@ -104,7 +104,7 @@ This adds Bootstrap under "dependencies" in your package.json.
 To use Bootstrap’s styles in your Sass, import it at the top of your main SCSS file (for example in styles/scss/main.scss):
 
 ```bash
-@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap"
 
 ```
 
