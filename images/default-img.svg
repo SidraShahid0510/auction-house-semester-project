@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2200 2200">
+  <!-- Generator: Adobe Illustrator 29.6.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 207)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#radial-gradient);
+      }
+
+      .st1 {
+        fill: url(#radial-gradient1);
+      }
+
+      .st2 {
+        fill: url(#radial-gradient2);
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="717.5" cy="1500.79" fx="717.5" fy="1500.79" r="1257.27" gradientTransform="translate(0 2200) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#63dffc"/>
+      <stop offset="1" stop-color="#3f7cd1"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient1" cx="999.08" cy="1538.85" fx="999.08" fy="1538.85" r="480.56" gradientTransform="translate(0 2200) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#d1d1d1"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient2" cx="940.77" cy="782.72" fx="940.77" fy="782.72" r="674.96" gradientTransform="translate(0 2200) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#d1d1d1"/>
+    </radialGradient>
+  </defs>
+  <g id="Objects">
+    <g>
+      <path class="st0" d="M1878.02,1061.65c0,215.52-84.91,411.21-223.1,555.44-146.16,152.57-351.94,247.56-579.9,247.56s-433.74-94.99-579.9-247.56c-138.19-144.23-223.1-339.92-223.1-555.44,0-443.48,359.52-803,803-803s803,359.52,803,803Z"/>
+      <circle class="st1" cx="1075.02" cy="776.7" r="328.05"/>
+      <path class="st2" d="M1654.92,1617.09c-146.16,152.57-351.94,247.56-579.9,247.56s-433.74-94.99-579.9-247.56c82.54-240.93,311-414.12,579.9-414.12s497.36,173.19,579.9,414.12Z"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Auction House</title>
+    <meta
+      name="description"
+      content="Sign in to access your dashboard, create listings, and place bids on items."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <div class="container">
+        <div class="row">
+          <div class="auth-wrapper">
+            <div class="logo">
+              <img src="images/AH-logo.png" alt="logo" />
+            </div>
+            <h1 class="auth-heading">LOGIN</h1>
+            <!-- LOGIN FORM -->
+            <form id="login-form" novalidate>
+              <!--  Email -->
+              <div class="form-fields">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  autocomplete="email"
+                  required
+                />
+                <p class="field-hint" id="email-hint">
+                  Must be a valid @stud.noroff.no email
+                </p>
+              </div>
+              <!--  password -->
+              <div class="form-fields">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  class="form-control"
+                  autocomplete="new-password"
+                  required
+                />
+                <p class="field-hint" id="password-hint">
+                  Minimum 8 characters
+                </p>
+              </div>
+              <button type="submit" class="form-btn">Login</button>
+            </form>
+            <p class="auth-text">
+              New user?
+              <a href="register.html">Register</a>
+            </p>
+            <div
+              id="toast-message"
+              class="toast-message"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="loader-overlay" id="page-loader" aria-hidden="true">
+        <div class="loader-spinner"></div>
+      </div>
+    </main>
+
+    <script type="module" src="src/features/login.js"></script>
+  </body>
+</html>

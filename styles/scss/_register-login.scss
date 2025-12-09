@@ -1,0 +1,188 @@
+@use "./mixins" as mix;
+@use "./variables" as *;
+
+.auth-page {
+  min-height: 100vh;
+  background-color: color("background");
+
+  .container {
+    @include mix.flex-center;
+    min-height: calc(100vh - 4rem);
+
+    .row {
+      max-width: 500px;
+      width: 100%;
+    }
+  }
+
+  .auth-wrapper {
+    @include mix.margin(0, auto);
+
+    .logo {
+      img {
+        max-height: 56px;
+        display: block;
+        @include mix.margin(0, auto, 1.5rem);
+      }
+    }
+
+    .auth-heading {
+      font-weight: 600;
+      font-size: 2rem;
+      color: color("primary");
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .toast-message {
+    display: none;
+    margin-top: 1rem;
+    @include mix.padding(0.75rem, 1rem);
+    @include mix.rounded(4px);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .toast-message--visible {
+    display: block;
+  }
+
+  .toast-message--success {
+    background-color: #188038;
+  }
+
+  .toast-message--error {
+    background-color: #d93025;
+  }
+
+  .form-fields {
+    @include mix.padding(1rem, 0, 0, 0);
+
+    .form-control {
+      background-color: color("input-bg");
+      border: none;
+      outline: none;
+      @include mix.rounded(5px);
+      @include mix.padding(0.85rem, 1rem);
+
+      &:focus {
+        background-color: color("background") !important;
+        outline: none;
+        border: 1px solid color("btn-focus-color") !important;
+        box-shadow: none;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px color("input-bg") inset !important;
+        box-shadow: 0 0 0 1000px color("input-bg") inset !important;
+        -webkit-text-fill-color: color("primary") !important;
+      }
+    }
+
+    .field-hint {
+      @include mix.margin(0.25rem, 0, 0, 0);
+      font-size: 0.85rem;
+      color: color("field-hint");
+
+      &.is-invalid {
+        color: color("error");
+      }
+    }
+  }
+
+  .form-label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: color("primary");
+  }
+
+  .form-btn {
+    background-color: color("btn-bg");
+    border: none;
+    color: color("background");
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    @include mix.padding(0.75rem, 1rem);
+    @include mix.rounded(5px);
+    @include mix.margin(1.25rem, 0);
+
+    &:hover {
+      background-color: color("btn-hover-color");
+    }
+  }
+
+  .auth-text {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: color("btn-bg");
+
+      &:hover {
+        color: color("btn-hover-color");
+      }
+    }
+  }
+
+  .loader-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+
+    &.is-visible {
+      display: flex;
+    }
+
+    .loader-spinner {
+      width: 48px;
+      height: 48px;
+      @include mix.rounded(50%);
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #ffffff;
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 992px) {
+    .auth-wrapper {
+      .logo img {
+        max-height: 46px;
+      }
+
+      .auth-heading {
+        font-size: 1.5rem;
+      }
+    }
+
+    .form-label,
+    .form-btn,
+    .form-control,
+    .auth-text {
+      font-size: 0.9rem;
+    }
+
+    .form-fields {
+      .field-hint {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

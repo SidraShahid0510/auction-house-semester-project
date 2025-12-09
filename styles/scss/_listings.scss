@@ -1,0 +1,327 @@
+@use "./mixins" as mix;
+@use "./variables" as *;
+
+/*LISTINGS SECTION*/
+@keyframes listings-skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.home-page {
+  .home-listings {
+    background-color: color("body-bg");
+    @include mix.padding(1rem, 1rem, 2rem);
+
+    .listings-heading {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      color: color("primary");
+      margin-bottom: 2.5rem;
+    }
+
+    .listings-grid {
+      row-gap: 2rem;
+    }
+
+    .listing-card {
+      background-color: color("background");
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      @include mix.rounded(2px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .image-wrapper {
+      position: relative;
+      overflow: hidden;
+
+      .listing-card-img {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease-out;
+      }
+
+      .listing-card-badge {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 500;
+        @include mix.padding(0.25rem, 0.6rem);
+        @include mix.rounded(2px);
+        z-index: 1;
+      }
+
+      &:hover .listing-card-img {
+        transform: scale(1.05);
+      }
+    }
+
+    .listing-card-meta {
+      background-color: color("input-bg");
+      @include mix.padding(0.6rem, 1rem, 0.4rem);
+    }
+
+    .listing-card-meta-main {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: color("primary");
+    }
+
+    .listing-card-meta-sub {
+      @include mix.margin(0.2rem, 0, 0);
+      font-size: 0.75rem;
+      color: color("muted-text");
+    }
+
+    .listing-card-body {
+      @include mix.padding(1rem, 1rem, 0.75rem);
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .listing-card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: color("primary");
+      margin-bottom: 0.5rem;
+    }
+
+    .listings-bids {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .listing-card-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: color("primary");
+    }
+
+    .value {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+
+      &.value-muted {
+        color: color("muted-text");
+        font-style: italic;
+      }
+    }
+
+    .listing-card-auth-text {
+      font-size: 0.8rem;
+      margin: 0;
+      color: color("muted-text");
+
+      a {
+        color: color("btn-bg");
+        text-decoration: none;
+
+        &:hover {
+          color: color("btn-hover-color");
+        }
+      }
+    }
+
+    .listing-card-footer {
+      @include mix.padding(0.75rem, 1rem, 1rem);
+    }
+
+    .listing-card-btn {
+      display: block;
+      width: 100%;
+      background-color: color("btn-bg");
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      @include mix.padding(0.6rem, 1rem);
+      text-align: center;
+      @include mix.rounded(2px);
+
+      &:hover {
+        background-color: color("btn-hover-color");
+      }
+    }
+
+    .listing-card-user {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.78rem;
+      color: color("primary");
+      gap: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .listing-card-description {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+
+    .listing-card-bid-form {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: auto 0 0.5rem;
+    }
+
+    .bid-input {
+      flex: 1 1 auto;
+      font-size: 0.8rem;
+      @include mix.padding(0.45rem, 0.6rem);
+
+      border: 1px solid color("border");
+      @include mix.rounded(2px);
+      outline: none;
+
+      &:focus {
+        border-color: color("btn-bg");
+      }
+    }
+
+    .listing-card-bid-btn {
+      font-size: 0.8rem;
+      font-weight: 500;
+      @include mix.padding(0.48rem, 0.9rem);
+      background-color: color("btn-bg");
+      border: none;
+      color: #ffffff;
+      @include mix.rounded(2px);
+      white-space: nowrap;
+
+      &:hover {
+        background-color: color("btn-hover-color");
+      }
+    }
+  }
+  /* Skeleton loading state */
+  .skeleton-block {
+    background: linear-gradient(
+      90deg,
+      #d1d5db 25%,
+      // darker gray (Tailwind gray-300 style)
+      #e5e7eb 37%,
+      // mid gray
+      #d1d5db 63%
+    );
+    background-size: 400% 100%;
+    animation: skeleton-loading 1.2s ease-in-out infinite;
+    @include mix.rounded(2px);
+  }
+
+  .skeleton-image {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 0.75rem;
+  }
+
+  .skeleton-line {
+    height: 12px;
+    margin-bottom: 0.4rem;
+  }
+
+  .skeleton-line-lg {
+    width: 70%;
+  }
+
+  .skeleton-line-sm {
+    width: 40%;
+  }
+
+  .skeleton-line-xs {
+    width: 30%;
+    height: 10px;
+  }
+
+  .listing-card.skeleton-card {
+    // optional: disable hover / pointer during loading
+    cursor: default;
+
+    .listing-card-bid-btn,
+    .bid-input,
+    a {
+      pointer-events: none;
+    }
+  }
+
+  /*  MEDIA QUERIES */
+
+  @media (max-width: 992px) {
+    .home-listings {
+      .listings-heading {
+        font-size: 1.5rem;
+      }
+      .listings-grid {
+        row-gap: 3rem;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home-listings {
+      .listing-card-img {
+        height: 400px;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {
+    .home-listings {
+      .listing-card-img {
+        height: 325px;
+      }
+      .listings-grid {
+        row-gap: 2.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .home-listings {
+      @include mix.padding(1rem, 0, 2rem);
+
+      .container-xxl {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .listings-header {
+        margin-left: 0;
+        margin-right: 0;
+
+        .col-12 {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      /* Cards grid */
+      .listings-grid {
+        margin-left: 0;
+        margin-right: 0;
+        row-gap: 2rem;
+
+        .listings-column {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,244 @@
+@use "./variables" as *;
+@use "./mixins" as mix;
+
+// shared flex row + center alignment
+%flex-row-center {
+  display: flex;
+  align-items: center;
+}
+
+.site-nav {
+  background-color: color("background");
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .nav-container {
+    @extend %flex-row-center;
+    justify-content: space-between;
+    height: 80px;
+    @include mix.padding(0);
+    position: relative;
+  }
+
+  .logo {
+    img {
+      width: 80px;
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  .nav-right {
+    @extend %flex-row-center;
+    gap: 1.5rem;
+  }
+
+  /* GUEST LINKS: LOGIN / REGISTER */
+  .nav-auth-links {
+    @extend %flex-row-center;
+    gap: 1.5rem;
+
+    .nav-link {
+      position: relative; // needed for the underline
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: color("primary");
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: color 0.2s ease;
+
+      // underline (hidden by default)
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.15rem; // adjust if needed
+        width: 100%;
+        height: 2px;
+        background-color: color("btn-bg"); // blue
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease-out;
+      }
+
+      // hover state: blue text + animated underline
+      &:hover {
+        color: color("btn-bg");
+      }
+
+      &:hover::after {
+        transform: scaleX(1); // underline grows left → right
+      }
+    }
+  }
+
+  .nav-user-area {
+    @extend %flex-row-center;
+    gap: 1rem;
+  }
+
+  .nav-credits {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background-color: color("success");
+    color: color("background");
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: default;
+    @include mix.padding(0.4rem, 0.9rem);
+    @include mix.rounded(999px);
+  }
+
+  .nav-user-icon {
+    width: 40px;
+    height: 40px;
+    @include mix.rounded(50%);
+    border: none;
+    background-color: color("input-bg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+
+    .nav-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @include mix.rounded(50%);
+      display: none;
+    }
+
+    .nav-user-icon-default {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 1.1rem;
+        color: color("primary");
+      }
+    }
+
+    &.has-avatar {
+      .nav-avatar-img {
+        display: block;
+      }
+
+      .nav-user-icon-default {
+        display: none;
+      }
+    }
+  }
+
+  .nav-user-menu {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: 0;
+    width: 220px;
+    background-color: color("btn-bg");
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    @include mix.rounded(5px);
+    @include mix.padding(0.9rem, 0);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out,
+      visibility 0.2s ease-out;
+
+    .nav-user-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      @include mix.padding(0.5rem, 1rem);
+      border-bottom: 1px solid color("background");
+      color: color("background");
+    }
+
+    .nav-user-link {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      @include mix.padding(0.5rem, 1rem);
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: color("background");
+
+      i {
+        font-size: 0.9rem;
+      }
+    }
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+
+  /* STATE: guest (no user logged in) */
+  &.site-nav--guest {
+    .nav-auth-links {
+      display: flex;
+    }
+
+    .nav-user-area {
+      display: none;
+    }
+  }
+
+  /* STATE: logged-in user */
+  &.site-nav--user {
+    .nav-auth-links {
+      display: none;
+    }
+
+    .nav-user-area {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      img {
+        width: 70px;
+      }
+    }
+
+    .nav-right {
+      gap: 1rem;
+    }
+
+    .nav-auth-links {
+      gap: 1rem;
+
+      .nav-link {
+        font-size: 0.85rem;
+      }
+    }
+
+    .nav-credits {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .nav-container {
+      @include mix.padding(0, 1rem);
+    }
+
+    .nav-user-menu {
+      right: 1rem;
+    }
+  }
+}

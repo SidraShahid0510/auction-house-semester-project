@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listing Detail - Auction House</title>
+    <meta
+      name="description"
+      content="See complete auction details, bidding history, images, and seller information. Log in to start bidding and compete for this item."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <header>
+      <nav class="site-nav site-nav--guest">
+        <div class="container container-xxl nav-container">
+          <!-- Left: Logo -->
+          <div class="logo">
+            <a href="index.html" class="site-nav-logo" data-nav-home>
+              <img src="images/AH-logo.png" alt="auction house logo" />
+            </a>
+          </div>
+
+          <!-- Right: nav content -->
+          <div class="nav-right">
+            <!-- DESKTOP: guest auth links -->
+            <div class="nav-auth-links">
+              <a href="login.html" class="nav-link">LOGIN</a>
+              <a href="register.html" class="nav-link">REGISTER</a>
+            </div>
+
+            <!-- DESKTOP & MOBILE: logged-in user area -->
+            <div class="nav-user-area">
+              <button type="button" class="nav-credits">
+                <span>Credits</span>
+                <span id="nav-credits-value">1000</span>
+              </button>
+
+              <button
+                type="button"
+                class="nav-user-icon"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <!-- Avatar image  -->
+                <img id="nav-avatar" alt="User avatar" class="nav-avatar-img" />
+
+                <!-- Default icon fallback -->
+                <span class="nav-user-icon-default">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+              </button>
+
+              <!-- SINGLE user menu ) -->
+              <div class="nav-user-menu" id="nav-user-menu">
+                <p class="nav-user-name" id="nav-user-name">User name</p>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-profile-link"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile Page</span>
+                </div>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-logout-btn"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="productDetailPage" class="detail-page">
+      <section id="listingDetailSection" class="listing-detail">
+        <div class="container-xxl listing-detail-container">
+          <div class="row justify-content-center listing-detail-row">
+            <div class="col-12 listing-detail-column">
+              <!-- Main card -->
+              <article class="listing-detail-card">
+                <!-- Top: image + info -->
+                <div class="row listing-detail-row">
+                  <!-- Image -->
+                  <div class="col-lg-6 image-column">
+                    <figure class="image-wrapper">
+                      <img
+                        src="images/watch.jpg"
+                        alt="Listing image"
+                        id="listingImage"
+                        class="listing-detail-image img-fluid"
+                      />
+                    </figure>
+                  </div>
+
+                  <!-- Info -->
+                  <div class="col-lg-6 info-column">
+                    <div class="listing-info">
+                      <header class="listing-header">
+                        <h1 id="listingTitle" class="listing-title">
+                          Timeless Piece
+                        </h1>
+                        <p id="listingDescription" class="listing-description">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. In molestiae numquam eligendi neque possimus
+                          impedit cum hic. Quibusdam quaerat obcaecati ut quae
+                          et, sed porro qui deserunt cupiditate sapiente
+                          maiores.
+                        </p>
+                      </header>
+
+                      <section class="listing-detail-meta">
+                        <div class="meta-row">
+                          <span class="meta-label">Seller</span>
+                          <span id="listingSeller" class="meta-value">
+                            SellingFakeWatches
+                          </span>
+                        </div>
+                        <div class="meta-row">
+                          <span class="meta-label">Total bids</span>
+                          <span id="listingTotalBids" class="meta-value">
+                            8
+                          </span>
+                        </div>
+                        <div class="meta-row">
+                          <span class="meta-label">Highest bid</span>
+                          <span id="listingHighestBid" class="meta-value">
+                            100 credits
+                          </span>
+                        </div>
+                        <div class="meta-row">
+                          <span class="meta-label">Ends at</span>
+                          <span id="listingEndsAt" class="meta-value">
+                            Feb 23, 2025, 01:18 PM
+                          </span>
+                        </div>
+                      </section>
+
+                      <!-- Place a bid moved here under description/meta -->
+                      <section class="place-bid">
+                        <header class="place-bid-header">
+                          <h2 class="section-title">Place a Bid</h2>
+                        </header>
+
+                        <form id="placeBidForm" class="bid-form">
+                          <div class="field">
+                            <label
+                              for="bidAmountInput"
+                              class="form-label field-label"
+                            >
+                              Bid Amount
+                            </label>
+
+                            <div class="input-group">
+                              <input
+                                type="number"
+                                min="0"
+                                step="1"
+                                class="form-control"
+                                id="bidAmountInput"
+                                name="bidAmount"
+                                placeholder="0"
+                                required
+                              />
+                            </div>
+                          </div>
+
+                          <div class="listing-detail-actions">
+                            <button
+                              type="submit"
+                              id="placeBidButton"
+                              class="place-bid-button"
+                            >
+                              Place Bid
+                            </button>
+                          </div>
+                        </form>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom: Bid history only -->
+                <div class="row bottom-row">
+                  <div class="col-12 bids-column">
+                    <section class="bids-section">
+                      <header class="bids-header">
+                        <h2 class="section-title">Bid History</h2>
+                      </header>
+                      <div id="bidHistoryList" class="bids-list">
+                        <div class="bid-row">
+                          <div class="bid-left">
+                            <span class="bid-username">username123321</span>
+                            <span class="bid-time">
+                              Feb 23, 2025, 12:30 PM
+                            </span>
+                          </div>
+                          <div class="bid-right">
+                            <span class="bid-amount">100 credits</span>
+                          </div>
+                        </div>
+
+                        <div class="bid-row">
+                          <div class="bid-left">
+                            <span class="bid-username">senbet</span>
+                            <span class="bid-time">
+                              Feb 23, 2025, 11:46 AM
+                            </span>
+                          </div>
+                          <div class="bid-right">
+                            <span class="bid-amount">10 credits</span>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/features/nav.js"></script>
+    <script type="module" src="./src/features/listing-detail.js"></script>
+  </body>
+</html>

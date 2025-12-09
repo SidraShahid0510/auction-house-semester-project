@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Auction House</title>
+    <meta
+      name="description"
+      content="Your auction dashboard gives you quick access to your listings, bids, credits, and profile details. Stay updated and manage your auctions effortlessly."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <header>
+      <nav class="site-nav site-nav--guest">
+        <div class="container container-xxl nav-container">
+          <!-- Left: Logo -->
+          <div class="logo">
+            <a href="index.html" class="site-nav-logo" data-nav-home>
+              <img src="images/AH-logo.png" alt="auction house logo" />
+            </a>
+          </div>
+          <!-- Right: nav content -->
+          <div class="nav-right">
+            <!-- DESKTOP: guest auth links -->
+            <div class="nav-auth-links">
+              <a href="login.html" class="nav-link">LOGIN</a>
+              <a href="register.html" class="nav-link">REGISTER</a>
+            </div>
+
+            <!-- DESKTOP & MOBILE: logged-in user area -->
+            <div class="nav-user-area">
+              <button type="button" class="nav-credits">
+                <span>Credits</span>
+                <span id="nav-credits-value">1000</span>
+              </button>
+
+              <button
+                type="button"
+                class="nav-user-icon"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <!-- Avatar image-->
+                <img id="nav-avatar" alt="User avatar" class="nav-avatar-img" />
+
+                <!-- Default icon fallback -->
+                <span class="nav-user-icon-default">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+              </button>
+
+              <!-- SINGLE user menu-->
+              <div class="nav-user-menu" id="nav-user-menu">
+                <p class="nav-user-name" id="nav-user-name">User name</p>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-profile-link"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile Page</span>
+                </div>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-logout-btn"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="home-page">
+      <!--  search section -->
+      <section class="home-search">
+        <div class="container-xxl">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 search-column">
+              <div class="home-search-intro">
+                <p class="home-search-text">
+                  Browse through a wide range of active auction listings and
+                  find items that match your interests.
+                </p>
+              </div>
+            </div>
+            <form id="home-search-form" class="home-search-form" novalidate>
+              <div class="input-group">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input
+                  type="search"
+                  class="form-control home-search-input"
+                  id="home-search-query"
+                  placeholder="An item, a work of art..."
+                  aria-label="Search listings"
+                />
+              </div>
+              <button type="submit" class="btn home-search-btn">Search</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Listings section -->
+      <section class="home-listings" id="home-listings">
+        <div class="container-xxl">
+          <div class="row align-items-center listings-header mb-4">
+            <div class="col-12 col-md-4"></div>
+
+            <!-- Centered heading -->
+            <div class="col-12 col-md-4 text-center">
+              <h1 class="listings-heading mb-0">LISTINGS</h1>
+            </div>
+
+            <!-- Button on the right -->
+            <div class="col-12 col-md-4 text-md-end text-center mt-4 mt-md-0">
+              <a href="create.html" class="create-listing-btn">
+                + Create Listing
+              </a>
+            </div>
+          </div>
+          <div class="row listings-grid" id="listings-grid">
+            <!-- Skeleton card 1 -->
+            <div class="col-12 col-md-6 col-lg-4 listings-column">
+              <article class="listing-card skeleton-card">
+                <div class="image-wrapper">
+                  <div class="skeleton-block skeleton-image"></div>
+                </div>
+
+                <div class="listing-card-meta">
+                  <div class="listing-card-meta-main">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                  </div>
+                  <p class="listing-card-meta-sub">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-xs"
+                    ></span>
+                  </p>
+                </div>
+
+                <div class="listing-card-body">
+                  <div
+                    class="skeleton-block skeleton-line skeleton-line-lg"
+                  ></div>
+                  <div class="skeleton-block skeleton-line"></div>
+                  <div class="skeleton-block skeleton-line"></div>
+
+                  <div class="listings-bids">
+                    <div
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></div>
+                  </div>
+
+                  <div class="listing-card-bid-form">
+                    <div class="skeleton-block skeleton-line"></div>
+                  </div>
+                </div>
+
+                <div class="listing-card-footer">
+                  <div class="skeleton-block skeleton-line"></div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Skeleton card 2 -->
+            <div class="col-12 col-md-6 col-lg-4 listings-column">
+              <article class="listing-card skeleton-card">
+                <div class="image-wrapper">
+                  <div class="skeleton-block skeleton-image"></div>
+                </div>
+
+                <div class="listing-card-meta">
+                  <div class="listing-card-meta-main">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                  </div>
+                  <p class="listing-card-meta-sub">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-xs"
+                    ></span>
+                  </p>
+                </div>
+
+                <div class="listing-card-body">
+                  <div
+                    class="skeleton-block skeleton-line skeleton-line-lg"
+                  ></div>
+                  <div class="skeleton-block skeleton-line"></div>
+                  <div class="skeleton-block skeleton-line"></div>
+
+                  <div class="listings-bids">
+                    <div
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></div>
+                  </div>
+
+                  <div class="listing-card-bid-form">
+                    <div class="skeleton-block skeleton-line"></div>
+                  </div>
+                </div>
+
+                <div class="listing-card-footer">
+                  <div class="skeleton-block skeleton-line"></div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Skeleton card 3 -->
+            <div class="col-12 col-md-6 col-lg-4 listings-column">
+              <article class="listing-card skeleton-card">
+                <div class="image-wrapper">
+                  <div class="skeleton-block skeleton-image"></div>
+                </div>
+
+                <div class="listing-card-meta">
+                  <div class="listing-card-meta-main">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></span>
+                  </div>
+                  <p class="listing-card-meta-sub">
+                    <span
+                      class="skeleton-block skeleton-line skeleton-line-xs"
+                    ></span>
+                  </p>
+                </div>
+
+                <div class="listing-card-body">
+                  <div
+                    class="skeleton-block skeleton-line skeleton-line-lg"
+                  ></div>
+                  <div class="skeleton-block skeleton-line"></div>
+                  <div class="skeleton-block skeleton-line"></div>
+
+                  <div class="listings-bids">
+                    <div
+                      class="skeleton-block skeleton-line skeleton-line-sm"
+                    ></div>
+                  </div>
+
+                  <div class="listing-card-bid-form">
+                    <div class="skeleton-block skeleton-line"></div>
+                  </div>
+                </div>
+
+                <div class="listing-card-footer">
+                  <div class="skeleton-block skeleton-line"></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container-xxl">
+        <div class="site-footer-inner">
+          <div class="site-footer-links" aria-label="Footer navigation">
+            <a href="#" class="site-footer-link">About us</a>
+            <a href="#" class="site-footer-link">Careers</a>
+            <a href="#" class="site-footer-link">Exhibitions</a>
+            <a href="#" class="site-footer-link">Services</a>
+            <a href="#" class="site-footer-link">Contact us</a>
+            <a href="#" class="site-footer-link">Information</a>
+          </div>
+
+          <p class="site-footer-copy">copyright © Auction House</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./src/features/nav.js"></script>
+    <script src="./src/features/search.js"></script>
+    <script type="module" src="./src/features/dashboard.js"></script>
+  </body>
+</html>

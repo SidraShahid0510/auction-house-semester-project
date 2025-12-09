@@ -1,0 +1,19 @@
+{
+  "name": "auction-house-semester-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass --watch --load-path=node_modules styles/scss/main.scss styles/css/main.css",
+    "build": "sass --style=compressed --no-source-map --load-path=node_modules styles/scss/main.scss styles/css/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  },
+  "devDependencies": {
+    "sass": "^1.94.0"
+  }
+}

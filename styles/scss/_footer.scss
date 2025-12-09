@@ -1,0 +1,64 @@
+@use "./mixins" as mix;
+@use "./variables" as *;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/*FOOTER*/
+
+.site-footer {
+  flex-shrink: 0;
+  background-color: color("background");
+  @include mix.padding(2.5rem, 0);
+
+  .site-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .site-footer-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: color("primary");
+    text-decoration: none;
+
+    &:hover {
+      color: color("btn-bg");
+    }
+  }
+
+  .site-footer-copy {
+    font-size: 0.8rem;
+    color: color("muted-text");
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .site-footer-inner {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@use "sass:map";
+// brand + base
+
+$font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+$font-family-base: $font-family-sans-serif;
+$colors: (
+  "primary": #000,
+  "secondary": #f0f0f0,
+  "btn-bg": #0d49b9,
+  "input-bg": #e1f5ff,
+  "background": #fff,
+  "btn-hover-color": #083891,
+  "btn-focus-color": #353535,
+  "field-hint": #6b6b6b,
+  "error": #d93025,
+  "success": #188038,
+  "body-bg": #f1f7fa,
+  "green-btn-hover": #0e5f26,
+  "default-banner-bg": linear-gradient(135deg, #4d5ce9, #3041db, #699bf8),
+);
+@function color($name) {
+  @return map.get($colors, $name);
+}

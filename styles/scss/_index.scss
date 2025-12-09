@@ -1,0 +1,190 @@
+@use "./mixins" as mix;
+@use "./variables" as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.home-page {
+  background-color: color("body-bg");
+
+  .home-hero {
+    @include mix.margin(0);
+    @include mix.padding(0);
+    width: 100%;
+    min-height: 80vh;
+    height: 80vh;
+    position: relative;
+    background-image: url("../../images/hero-img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .home-hero-container {
+      @include mix.padding(0, 1.5rem);
+      height: 100%;
+      position: relative;
+    }
+
+    .home-hero-btns {
+      position: absolute;
+      left: 50%;
+      bottom: 3rem;
+      transform: translateX(-50%);
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .home-hero-btn {
+      background-color: color("background");
+      color: color("primary");
+      font-size: 0.95rem;
+      font-weight: 500;
+      @include mix.padding(0.8rem, 2.4rem);
+      @include mix.rounded(2px);
+      border: none;
+
+      &:hover {
+        background-color: color("btn-bg");
+        color: color("background");
+      }
+    }
+  }
+
+  .home-search {
+    @include mix.padding(3.5rem, 0, 2.5rem);
+    background-color: color("body-bg");
+  }
+
+  .home-search-intro {
+    text-align: center;
+    max-width: 640px;
+    @include mix.margin(0, auto, 1.75rem);
+
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+      color: color("primary");
+    }
+  }
+
+  .home-search-btn {
+    background-color: color("btn-bg");
+    color: color("background");
+    font-size: 1rem;
+    font-weight: 500;
+    @include mix.padding(0, 45px);
+    border: none;
+    cursor: pointer;
+    height: 48px;
+    @include mix.rounded(2px);
+    align-self: center;
+
+    &:hover {
+      background-color: color("btn-hover-color");
+    }
+  }
+
+  .home-search-form {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    @include mix.padding(0);
+    gap: 1.25rem;
+    background-color: transparent;
+
+    .input-group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background-color: color("background") !important;
+      @include mix.padding(0, 12px);
+      height: 55px;
+      @include mix.rounded(2px);
+      @include mix.feed-card-shadow;
+
+      i {
+        color: color("field-hint");
+      }
+    }
+
+    .form-control,
+    .home-search-input,
+    .home-search-input:focus,
+    .home-search-input:active {
+      background-color: color("background") !important;
+      border: none;
+      outline: none;
+      box-shadow: none !important;
+      @include mix.padding(0.85rem, 1rem);
+      font-size: 0.9rem;
+    }
+
+    .home-search-input:-webkit-autofill,
+    .home-search-input:-webkit-autofill:hover,
+    .home-search-input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px color("background") inset !important;
+      box-shadow: 0 0 0 1000px color("background") inset !important;
+      -webkit-text-fill-color: color("primary") !important;
+    }
+  }
+
+  /*RESPONSIVE*/
+
+  @media (max-width: 992px) {
+    .home-hero {
+      min-height: 60vh;
+      height: 60vh;
+
+      .home-hero-btn {
+        font-size: 0.875rem;
+        @include mix.padding(0.8rem, 2rem);
+      }
+    }
+
+    .home-search-intro,
+    .home-search-form {
+      width: 100%;
+      max-width: 500px;
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+
+    .home-search-btn {
+      font-size: 0.9rem;
+      @include mix.padding(0, 30px);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .home-hero {
+      min-height: 50vh;
+      height: 50vh;
+
+      .home-hero-btn {
+        font-size: 0.875rem;
+        @include mix.padding(0.7rem, 1.25rem);
+      }
+    }
+
+    .home-search-intro,
+    .home-search-form {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .home-search-form {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}

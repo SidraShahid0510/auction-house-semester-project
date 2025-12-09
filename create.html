@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Listing - Auction House</title>
+    <meta
+      name="description"
+      content="List your item for auction in just a few steps. Add photos, set an end date, and publish your listing so other users can start bidding."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <header>
+      <nav class="site-nav site-nav--guest">
+        <div class="container container-xxl nav-container">
+          <!-- Left: Logo -->
+          <div class="logo">
+            <a href="index.html" class="site-nav-logo" data-nav-home>
+              <img src="images/AH-logo.png" alt="auction house logo" />
+            </a>
+          </div>
+
+          <!-- Right: nav content -->
+          <div class="nav-right">
+            <!-- DESKTOP: guest auth links -->
+            <div class="nav-auth-links">
+              <a href="login.html" class="nav-link">LOGIN</a>
+              <a href="register.html" class="nav-link">REGISTER</a>
+            </div>
+
+            <!-- DESKTOP & MOBILE: logged-in user area -->
+            <div class="nav-user-area">
+              <button type="button" class="nav-credits">
+                <span>Credits</span>
+                <span id="nav-credits-value">1000</span>
+              </button>
+
+              <button
+                type="button"
+                class="nav-user-icon"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <!-- Avatar image (hidden until we have a URL) -->
+                <img id="nav-avatar" alt="User avatar" class="nav-avatar-img" />
+
+                <!-- Default icon fallback -->
+                <span class="nav-user-icon-default">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+              </button>
+
+              <!-- SINGLE user menu (used on all screen sizes) -->
+              <div class="nav-user-menu" id="nav-user-menu">
+                <p class="nav-user-name" id="nav-user-name">User name</p>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-profile-link"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile Page</span>
+                </div>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-logout-btn"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="createPage" class="create-page">
+      <section id="createListingSection" class="create-listing">
+        <div class="container-xxl create-listing__container">
+          <div class="row justify-content-center create-listing__row">
+            <div class="col-lg-6 col-md-8 create-listing__column">
+              <div id="createListingCard" class="create-listing-card">
+                <h1 id="createListingHeading" class="create-listing-heading">
+                  Create New Listing
+                </h1>
+
+                <form id="createListingForm" class="create-listing-form">
+                  <!-- Title -->
+                  <div class="create-listing-field">
+                    <label for="listingTitleInput" class="form-label"
+                      >Title</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="listingTitleInput"
+                      name="title"
+                      placeholder="Vintage coffee cup"
+                      required
+                    />
+                  </div>
+
+                  <!-- Description -->
+                  <div class="create-listing-field">
+                    <label for="listingDescriptionInput" class="form-label"
+                      >Description</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="listingDescriptionInput"
+                      name="description"
+                      rows="4"
+                      placeholder="Old vintage coffee cup, rarely used"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <!-- Media URLs -->
+                  <div class="create-listing-field">
+                    <label for="mediaUrlsInput" class="form-label">
+                      Media URL
+                    </label>
+                    <textarea
+                      class="form-control"
+                      id="mediaUrlsInput"
+                      name="media"
+                      rows="3"
+                      placeholder="https://images.unsplash.com/..."
+                    ></textarea>
+                  </div>
+
+                  <!-- End date & time -->
+                  <div
+                    class="create-listing-field create-listing__field--enddatetime"
+                  >
+                    <label class="form-label"> End Date &amp; Time </label>
+                    <div class="row datetime-row">
+                      <div class="col-12 col-md-6 date-column">
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="endDateInput"
+                          name="endDate"
+                          required
+                        />
+                      </div>
+
+                      <div class="col-12 col-md-6 time-column">
+                        <input
+                          type="time"
+                          class="form-control"
+                          id="endTimeInput"
+                          name="endTime"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <p id="endDateTimeHelpText" class="help-text">
+                      Choose when bidding for this listing should end.
+                    </p>
+                  </div>
+
+                  <!-- Submit button -->
+                  <div class="create-listing-actions">
+                    <button
+                      type="submit"
+                      id="createListingButton"
+                      class="create-listing-button"
+                    >
+                      Create Listing
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/features/nav.js"></script>
+    <script type="module" src="./src/features/create.js"></script>
+  </body>
+</html>

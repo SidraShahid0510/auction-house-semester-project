@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile - Auction House</title>
+    <meta
+      name="description"
+      content="View and manage your profile, update your avatar, track your credits, and review your auction activity—all in your personal profile page."
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/css/main.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico.png" />
+  </head>
+  <body>
+    <header>
+      <nav class="site-nav site-nav--guest">
+        <div class="container container-xxl nav-container">
+          <!-- Left: Logo -->
+          <div class="logo">
+            <a href="index.html" class="site-nav-logo" data-nav-home>
+              <img src="images/AH-logo.png" alt="auction house logo" />
+            </a>
+          </div>
+          <!-- Right: nav content -->
+          <div class="nav-right">
+            <!-- DESKTOP: guest auth links -->
+            <div class="nav-auth-links">
+              <a href="login.html" class="nav-link">LOGIN</a>
+              <a href="register.html" class="nav-link">REGISTER</a>
+            </div>
+
+            <!-- DESKTOP & MOBILE: logged-in user area -->
+            <div class="nav-user-area">
+              <button type="button" class="nav-credits">
+                <span>Credits</span>
+                <span id="nav-credits-value">1000</span>
+              </button>
+
+              <button
+                type="button"
+                class="nav-user-icon"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <!-- Avatar image  -->
+                <img id="nav-avatar" alt="User avatar" class="nav-avatar-img" />
+
+                <!-- Default icon fallback -->
+                <span class="nav-user-icon-default">
+                  <i class="fa-solid fa-user"></i>
+                </span>
+              </button>
+
+              <!-- SINGLE user menu -->
+              <div class="nav-user-menu" id="nav-user-menu">
+                <p class="nav-user-name" id="nav-user-name">User name</p>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-profile-link"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile Page</span>
+                </div>
+
+                <div
+                  class="nav-user-link"
+                  id="nav-logout-btn"
+                  role="button"
+                  tabindex="0"
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>Logout</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="profile-main">
+      <div class="profile-container">
+        <div class="container-xxl">
+          <!-- PROFILE HEADER CARD -->
+          <section class="profile-header">
+            <div class="profile-header-card">
+              <!-- Banner area -->
+              <div class="profile-banner">
+                <!-- Edit button on top-right of banner -->
+                <button class="btn profile-edit-btn" type="button">
+                  Edit Profile
+                </button>
+              </div>
+
+              <!-- Avatar + info + credits -->
+              <div class="profile-header-content">
+                <div class="profile-user">
+                  <div class="profile-avatar">
+                    <!-- This <img> src will later be replaced with avatar URL from API -->
+                    <img src="images/default-img.png" alt="User avatar" />
+                  </div>
+
+                  <div class="profile-user-text">
+                    <p class="profile-username">username123321</p>
+                    <p class="profile-email">username123321@stud.noroff.no</p>
+                    <p class="bio-text">
+                      This is my bio .this is my bio.this is my bio. this is bui
+                    </p>
+                  </div>
+                </div>
+
+                <div class="profile-credits">
+                  <p class="profile-credits-value">748</p>
+                  <p class="profile-credits-label">Credits</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- EDIT PROFILE FORM CARD -->
+          <section class="profile-edit">
+            <div class="profile-edit-card">
+              <h2 class="profile-edit-title">EDIT PROFILE</h2>
+
+              <form id="profile-edit-form">
+                <div class="mb-3">
+                  <label for="avatar-url" class="form-label">Avatar URL</label>
+                  <input
+                    type="url"
+                    class="form-control"
+                    id="avatar-url"
+                    name="avatar"
+                    placeholder="https://example.com/avatar.jpg"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="banner-url" class="form-label">Banner URL</label>
+                  <input
+                    type="url"
+                    class="form-control"
+                    id="banner-url"
+                    name="banner"
+                    placeholder="https://example.com/banner.jpg"
+                  />
+                </div>
+
+                <div class="mb-1">
+                  <label for="bio" class="form-label">Bio</label>
+                  <textarea
+                    class="form-control"
+                    id="bio"
+                    name="bio"
+                    rows="3"
+                    maxlength="160"
+                    placeholder="Tell us a bit about yourself..."
+                  ></textarea>
+                </div>
+                <p class="profile-bio-hint">Maximum 160 characters</p>
+
+                <div class="profile-edit-actions">
+                  <button type="button" class="cancel-btn">Cancel</button>
+                  <button type="submit" class="save-btn">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- ACTIVITY TABS + SECTIONS -->
+          <section class="profile-listings-section">
+            <!-- Tab buttons -->
+            <div class="profile-activity-tabs">
+              <button
+                type="button"
+                class="profile-activity-tab is-active"
+                data-profile-tab="listings"
+              >
+                My listings
+              </button>
+              <button
+                type="button"
+                class="profile-activity-tab"
+                data-profile-tab="bids"
+              >
+                My bids
+              </button>
+              <button
+                type="button"
+                class="profile-activity-tab"
+                data-profile-tab="wins"
+              >
+                Wins
+              </button>
+            </div>
+
+            <!-- My listings panel (default visible) -->
+            <div
+              class="profile-activity-panel is-active"
+              data-profile-panel="listings"
+            >
+              <h1 class="listings-heading">MY LISTINGS</h1>
+
+              <div class="row profile-listings-grid" id="profile-listings-grid">
+                <!-- keep your skeleton cards here if you want -->
+                <!-- Skeleton 1 -->
+                <div class="col-12 col-md-6 col-lg-4 profile-listings-col">
+                  <article class="profile-listing-card skeleton">
+                    <div class="image-wrapper">
+                      <div class="skeleton-block skeleton-image"></div>
+                    </div>
+
+                    <div class="listing-card-body">
+                      <div
+                        class="skeleton-block skeleton-line skeleton-line-lg"
+                      ></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                    </div>
+                  </article>
+                </div>
+
+                <!-- Skeleton 2 -->
+                <div class="col-12 col-md-6 col-lg-4 profile-listings-col">
+                  <article class="profile-listing-card skeleton">
+                    <div class="image-wrapper">
+                      <div class="skeleton-block skeleton-image"></div>
+                    </div>
+
+                    <div class="listing-card-body">
+                      <div
+                        class="skeleton-block skeleton-line skeleton-line-lg"
+                      ></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                    </div>
+                  </article>
+                </div>
+
+                <!-- Skeleton 3 -->
+                <div class="col-12 col-md-6 col-lg-4 profile-listings-col">
+                  <article class="profile-listing-card skeleton">
+                    <div class="image-wrapper">
+                      <div class="skeleton-block skeleton-image"></div>
+                    </div>
+
+                    <div class="listing-card-body">
+                      <div
+                        class="skeleton-block skeleton-line skeleton-line-lg"
+                      ></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                      <div class="skeleton-block skeleton-line"></div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <!-- My bids panel -->
+            <div class="profile-activity-panel" data-profile-panel="bids">
+              <h1 class="listings-heading">MY BIDS</h1>
+              <div class="row profile-listings-grid" id="profile-bids-grid">
+                <!-- JS will populate this -->
+              </div>
+            </div>
+
+            <!-- Wins panel -->
+            <div class="profile-activity-panel" data-profile-panel="wins">
+              <h1 class="listings-heading">WINS</h1>
+              <div class="row profile-listings-grid" id="profile-wins-grid">
+                <!-- JS will populate this -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-xxl">
+        <div class="site-footer-inner">
+          <div class="site-footer-links" aria-label="Footer navigation">
+            <a href="#" class="site-footer-link">About us</a>
+            <a href="#" class="site-footer-link">Careers</a>
+            <a href="#" class="site-footer-link">Exhibitions</a>
+            <a href="#" class="site-footer-link">Services</a>
+            <a href="#" class="site-footer-link">Contact us</a>
+            <a href="#" class="site-footer-link">Information</a>
+          </div>
+
+          <p class="site-footer-copy">copyright © Auction House</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="./src/features/nav.js"></script>
+    <script type="module" src="./src/features/profile.js"></script>
+  </body>
+</html>
