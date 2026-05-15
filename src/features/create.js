@@ -1,6 +1,9 @@
 import { getToken, getProfile } from "../utils/storage.js";
 import { API_KEY } from "../api/config.js";
-
+import {
+  parseMediaTextarea,
+  buildEndsAt,
+} from "../utils/listingFormHelpers.js";
 const API_BASE = "https://v2.api.noroff.dev";
 const CREATE_LISTING_URL = `${API_BASE}/auction/listings`;
 
@@ -31,48 +34,6 @@ const mediaInput = document.querySelector("#mediaUrlsInput");
 const endDateInput = document.querySelector("#endDateInput");
 const endTimeInput = document.querySelector("#endTimeInput");
 const submitBtn = document.querySelector("#createListingButton");
-
-/**
- * Parse a string of URLs (separated by commas or new lines) into a media array.
- *
- * @param {string} value - Raw user input containing one or more URLs.
- * @param {string} title - Listing title used to build alt text.
- * @returns {{ url: string; alt: string }[]} Parsed media array.
- */
-function parseMedia(value, title) {
-  const trimmed = value.trim();
-  if (!trimmed) return [];
-
-  const urls = trimmed
-    .split(/[\n,]+/)
-    .map((u) => u.trim())
-    .filter(Boolean);
-
-  return urls.map((url, index) => ({
-    url,
-    alt: `${title || "Listing"} image ${index + 1}`,
-  }));
-}
-
-/**
- * Build an ISO-8601 end date/time string from date and time inputs.
- *
- * @param {string} dateValue - Date string in `YYYY-MM-DD` format.
- * @param {string} timeValue - Time string in `HH:MM` format.
- * @returns {string | null} ISO-8601 datetime string or null if invalid.
- */
-function buildEndsAt(dateValue, timeValue) {
-  if (!dateValue) return null;
-
-  const time = timeValue && timeValue.length ? timeValue : "00:00";
-  const localDateTime = new Date(`${dateValue}T${time}`);
-
-  if (Number.isNaN(localDateTime.getTime())) {
-    return null;
-  }
-
-  return localDateTime.toISOString();
-}
 
 /**
  * Handle the create listing form submission.
@@ -120,9 +81,7 @@ async function handleCreateListing(event) {
     alert("End date/time must be in the future.");
     return;
   }
-
-  const media = parseMedia(mediaValue, title);
-
+  const media = parseMediaTextarea(mediaValue, title);
   /** @type {{ title: string; description: string; endsAt: string; media?: { url: string; alt: string }[] }} */
   const payload = {
     title,

@@ -92,7 +92,7 @@ async function refreshProfileCredits() {
           Authorization: `Bearer ${token}`,
           "X-Noroff-API-Key": API_KEY,
         },
-      }
+      },
     );
 
     if (!res.ok) return;
@@ -132,7 +132,7 @@ async function placeBid(listingId, amount) {
         "X-Noroff-API-Key": API_KEY,
       },
       body: JSON.stringify({ amount: Number(amount) }),
-    }
+    },
   );
 
   if (!response.ok) {
@@ -152,34 +152,6 @@ async function placeBid(listingId, amount) {
  * @param {string} listingId
  * @returns {Promise<Listing>}
  */
-async function fetchListingById(listingId) {
-  const token = getToken();
-
-  const headers = {
-    "X-Noroff-API-Key": API_KEY,
-  };
-
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-
-  const response = await fetch(
-    `${API_BASE}/auction/listings/${encodeURIComponent(
-      listingId
-    )}?_seller=true&_bids=true`,
-    { headers }
-  );
-
-  if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({}));
-    const message =
-      errorBody.errors?.[0]?.message || `API error: ${response.status}`;
-    throw new Error(message);
-  }
-
-  const result = await response.json();
-  return /** @type {Listing} */ (result.data);
-}
 
 /**
  * Create a listing card element for the dashboard grid.
@@ -192,7 +164,6 @@ function createListingCard(listing) {
     listing;
 
   const bidsCount = _count?.bids ?? (Array.isArray(bids) ? bids.length : 0);
-
   const highestBid = getHighestBidAmount(listing);
   const imageUrl = getListingImage(listing);
   const endDate = formatDate(endsAt);
@@ -202,88 +173,127 @@ function createListingCard(listing) {
 
   const shortDescription =
     description && description.length > 130
-      ? description.slice(0, 127) + "..."
+      ? `${description.slice(0, 127)}...`
       : description || "No description provided.";
 
   const col = document.createElement("div");
   col.className = "col-12 col-md-6 col-lg-4 listings-column";
 
-  col.innerHTML = `
-    <article class="listing-card" data-listing-id="${id}">
-      <div class="image-wrapper">
-        <span class="listing-card-badge">${bidsCount} bids</span>
-        <img
-          src="${imageUrl}"
-          alt="${title}"
-          class="listing-card-img"
-        />
-      </div>
+  const article = document.createElement("article");
+  article.className = "listing-card";
+  article.dataset.listingId = id;
 
-      <div class="listing-card-meta">
-        <div class="listing-card-meta-row">
-          <div>
-            <div class="listing-card-meta-main">
-              <span>Ends: ${endDate}</span>
-              <span class="listing-card-highest-bid">${highestBid} credits</span>
-            </div>
-            <p class="listing-card-meta-sub">${timeRemaining}</p>
-          </div>
-        </div>
-      </div>
+  const imageWrapper = document.createElement("div");
+  imageWrapper.className = "image-wrapper";
 
-      <div class="listing-card-body">
-        <h2 class="listing-card-title">${title}</h2>
+  const badgeEl = document.createElement("span");
+  badgeEl.className = "listing-card-badge";
+  badgeEl.textContent = `${bidsCount} bids`;
 
-        <div class="listing-card-user">
-          <span class="listing-card-username">By ${username}</span>
-          <span class="listing-card-posted">Posted ${postedDate}</span>
-        </div>
+  const img = document.createElement("img");
+  img.src = imageUrl;
+  img.alt = title || "Listing image";
+  img.className = "listing-card-img";
 
-        <p class="listing-card-description">
-          ${shortDescription}
-        </p>
+  imageWrapper.append(badgeEl, img);
 
-        <div class="listings-bids">
-          <p class="listing-card-label">Recent Bids:</p>
-          <p class="value value-muted listing-card-bids-text">
-            ${
-              bidsCount === 0
-                ? "No bids yet"
-                : `${bidsCount} bid${bidsCount === 1 ? "" : "s"} so far`
-            }
-          </p>
-        </div>
+  const meta = document.createElement("div");
+  meta.className = "listing-card-meta";
 
-        <div class="listing-card-bid-form">
-          <input
-            type="number"
-            class="bid-input"
-            placeholder="Enter bid amount"
-            min="0"
-          />
-          <button type="button" class="btn listing-card-bid-btn">
-            Bid
-          </button>
-        </div>
-      </div>
+  const metaRow = document.createElement("div");
+  metaRow.className = "listing-card-meta-row";
 
-      <div class="listing-card-footer">
-        <a href="listing-detail.html?id=${id}" class="btn listing-card-btn">
-          View Details
-        </a>
-      </div>
-    </article>
-  `;
+  const metaContent = document.createElement("div");
 
-  const bidBtn = col.querySelector(".listing-card-bid-btn");
-  const bidInput = col.querySelector(".bid-input");
-  const badgeEl = col.querySelector(".listing-card-badge");
-  const bidsTextEl = col.querySelector(".listing-card-bids-text");
-  const highestBidEl = col.querySelector(".listing-card-highest-bid");
+  const metaMain = document.createElement("div");
+  metaMain.className = "listing-card-meta-main";
 
-  if (!bidBtn || !bidInput || !badgeEl || !bidsTextEl || !highestBidEl) {
-    return col;
-  }
+  const endDateEl = document.createElement("span");
+  endDateEl.textContent = `Ends: ${endDate}`;
+
+  const highestBidEl = document.createElement("span");
+  highestBidEl.className = "listing-card-highest-bid";
+  highestBidEl.textContent = `${highestBid} credits`;
+
+  const timeEl = document.createElement("p");
+  timeEl.className = "listing-card-meta-sub";
+  timeEl.textContent = timeRemaining;
+
+  metaMain.append(endDateEl, highestBidEl);
+  metaContent.append(metaMain, timeEl);
+  metaRow.appendChild(metaContent);
+  meta.appendChild(metaRow);
+
+  const body = document.createElement("div");
+  body.className = "listing-card-body";
+
+  const titleEl = document.createElement("h2");
+  titleEl.className = "listing-card-title";
+  titleEl.textContent = title || "Untitled listing";
+
+  const userEl = document.createElement("div");
+  userEl.className = "listing-card-user";
+
+  const usernameEl = document.createElement("span");
+  usernameEl.className = "listing-card-username";
+  usernameEl.textContent = `By ${username}`;
+
+  const postedEl = document.createElement("span");
+  postedEl.className = "listing-card-posted";
+  postedEl.textContent = `Posted ${postedDate}`;
+
+  userEl.append(usernameEl, postedEl);
+
+  const descriptionEl = document.createElement("p");
+  descriptionEl.className = "listing-card-description";
+  descriptionEl.textContent = shortDescription;
+
+  const bidsBox = document.createElement("div");
+  bidsBox.className = "listings-bids";
+
+  const bidsLabel = document.createElement("p");
+  bidsLabel.className = "listing-card-label";
+  bidsLabel.textContent = "Recent Bids:";
+
+  const bidsTextEl = document.createElement("p");
+  bidsTextEl.className = "value value-muted listing-card-bids-text";
+  bidsTextEl.textContent =
+    bidsCount === 0
+      ? "No bids yet"
+      : `${bidsCount} bid${bidsCount === 1 ? "" : "s"} so far`;
+
+  bidsBox.append(bidsLabel, bidsTextEl);
+
+  const bidForm = document.createElement("div");
+  bidForm.className = "listing-card-bid-form";
+
+  const bidInput = document.createElement("input");
+  bidInput.type = "number";
+  bidInput.className = "bid-input";
+  bidInput.placeholder = "Enter bid amount";
+  bidInput.min = "0";
+
+  const bidBtn = document.createElement("button");
+  bidBtn.type = "button";
+  bidBtn.className = "btn listing-card-bid-btn";
+  bidBtn.textContent = "Bid";
+
+  bidForm.append(bidInput, bidBtn);
+
+  body.append(titleEl, userEl, descriptionEl, bidsBox, bidForm);
+
+  const footer = document.createElement("div");
+  footer.className = "listing-card-footer";
+
+  const detailsLink = document.createElement("a");
+  detailsLink.href = `listing-detail.html?id=${encodeURIComponent(id)}`;
+  detailsLink.className = "btn listing-card-btn";
+  detailsLink.textContent = "View Details";
+
+  footer.appendChild(detailsLink);
+
+  article.append(imageWrapper, meta, body, footer);
+  col.appendChild(article);
 
   const isOwnListing =
     currentUser && seller && seller.name === currentUser.name;
@@ -300,15 +310,17 @@ function createListingCard(listing) {
     }
 
     const amount = Number(bidInput.value);
+
     if (Number.isNaN(amount) || amount <= 0) {
       alert("Bid amount must be greater than 0.");
       return;
     }
 
     const currentHighest = getHighestBidAmount(listing);
+
     if (amount <= currentHighest) {
       alert(
-        `Your bid must be higher than the current highest bid (${currentHighest} credits).`
+        `Your bid must be higher than the current highest bid (${currentHighest} credits).`,
       );
       return;
     }
@@ -316,25 +328,28 @@ function createListingCard(listing) {
     try {
       bidBtn.disabled = true;
       bidBtn.textContent = "Placing bid...";
-      await placeBid(id, amount);
-      const freshListing = await fetchListingById(id);
+
+      const freshListing = await placeBid(id, amount);
       Object.assign(listing, freshListing);
+
       const newBidsCount =
         freshListing._count?.bids ??
         (Array.isArray(freshListing.bids) ? freshListing.bids.length : 0);
 
       const newHighestBid = getHighestBidAmount(freshListing);
-      highestBidEl.textContent = `${newHighestBid} credits`;
 
+      highestBidEl.textContent = `${newHighestBid} credits`;
       badgeEl.textContent = `${newBidsCount} bid${
         newBidsCount === 1 ? "" : "s"
       }`;
+
       bidsTextEl.textContent =
         newBidsCount === 0
           ? "No bids yet"
           : `${newBidsCount} bid${newBidsCount === 1 ? "" : "s"} so far`;
 
       bidInput.value = "";
+
       await refreshProfileCredits();
 
       alert("Bid placed successfully!");
